@@ -1,6 +1,6 @@
 import json
 
-def setup():
+def welcome():
     message = "Welcome to Orquestra!"
 
     message_dict = {}
