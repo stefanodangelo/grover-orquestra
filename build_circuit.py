@@ -1,17 +1,15 @@
 #from modules.convert import to_zap
 #from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
-#from math import sqrt
+from math import sqrt
 import json
-#from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
-#from math import sqrt
 #from zquantum.core.circuit import save_circuit
 
 
-#import pyquil
-#import cirq
-#import random
-#import warnings
-#import numpy as np
+import pyquil
+import cirq
+import random
+import warnings
+import numpy as np
 
 #from zquantum.core.circuit import Qubit, Circuit
 #from zquantum.core.circuit._gateset import ALL_GATES
@@ -53,6 +51,3 @@ def build_circuit(n_qubits, save_path='circuit.json'):
     
     to_zap(qc, save_path)
     """
-"""
-
-"""
