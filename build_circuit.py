@@ -1,4 +1,4 @@
-from modules.utils import *
+from .utils import *
 
 def build_circuit(n_qubits, save_path='circuit.json'):
     
