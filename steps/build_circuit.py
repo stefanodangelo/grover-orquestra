@@ -1,4 +1,4 @@
-from ..modules.utils import *
+from modules.utils import to_zap
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from math import sqrt
 import json
@@ -15,8 +15,7 @@ def build_circuit(n_qubits, save_path='circuit.json'):
     message_dict["message"] = message
     message_dict["schema"] = "message"
 
-    with open(save_path,'w') as f:
-        f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact
+    to_zap(message_dict, save_path)
     """
     # Define registers
     qr = QuantumRegister(n_qubits)
