@@ -2,7 +2,7 @@
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from math import sqrt
 import json
-#from zquantum.core.circuit import save_circuit
+from zquantum.core.circuit import save_circuit
 
 
 import pyquil
