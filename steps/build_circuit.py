@@ -1,11 +1,4 @@
 from modules.utils import *
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
-from math import sqrt
-import json
-
-from qiskit import IBMQ, Aer, assemble, transpile
-from qiskit.providers.ibmq import least_busy
-from qiskit.tools.monitor import job_monitor
 
 def build_circuit(n_qubits, save_path='circuit.json'):
     
