@@ -1,4 +1,4 @@
-from modules.utils import to_zap
+import ..modules
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from math import sqrt
 import json
