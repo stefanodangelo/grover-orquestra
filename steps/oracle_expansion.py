@@ -22,6 +22,22 @@ def adapt_oracle(circuit_path, element):
         metadata = json.load(f)
     metadata = list(metadata.values())[0]['circuit']
     
+    # remove x gates where not needed 
+    mct_positions = []
+    mct_in_oracle = True # boolean telling whether the mct is in the oracle or not
+    for i in range(len(metadata['gates'])):
+        if (metadata['gates'][i]['name'] == 'MCT' or metadata['gates'][i]['name'] == 'CNOT' or metadata['gates'][i]['name'] == 'CCX'):
+            if mct_in_oracle:
+                mct_positions.append(i)
+                mct_in_oracle = False
+            else:
+                mct_in_oracle = True
+    
+    mct_positions.sort(reverse=True) # sort in order not to affect the positions of the gate to remove
+    
+    for position in mct_positions:
+        remove_x_gates(metadata['gates'], position, element, len(element))  
+        
     # save modified .json
     save_circuit(Circuit.from_dict(metadata), circuit_path)
 
@@ -29,12 +45,4 @@ def expand_oracle(circuit, element_to_search):
     element_to_search = element_to_search[::-1] # reverse the string in order to correctly apply the oracle function
     
     # oracle expansion
-    #adapt_oracle(circuit, element_to_search)
-    message = "Welcome to Orquestra!"
-
-    message_dict = {}
-    message_dict["message"] = message
-    message_dict["schema"] = "message"
-
-    with open("circuit.json",'w') as f:
-        f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact
+    adapt_oracle(circuit, element_to_search)
