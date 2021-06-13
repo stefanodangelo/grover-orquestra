@@ -21,7 +21,7 @@ def load_circuit(filename):
     except IOError:
             print(f'Error: Could not open {filename}')
     
-    return Circuit.from_dict(data['circuit'])
+    return Circuit.from_dict(data)
 
 def to_zap(circuit, save_path):
     converted_circuit = Circuit(circuit)
