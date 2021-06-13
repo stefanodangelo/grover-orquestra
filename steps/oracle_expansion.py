@@ -49,7 +49,7 @@ def expand_oracle(circuit, element_to_search):
     #adapt_oracle(circuit, element_to_search)
     message = "EMPTY MESSAGE"
     try:
-        with open(circuit_path, 'r') as f:
+        with open(circuit, 'r') as f:
             metadata = json.load(f)
         message = "LOADED SUCCESSFULLY"
     except:
