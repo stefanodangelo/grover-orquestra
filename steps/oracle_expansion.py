@@ -48,7 +48,7 @@ def welcome():
     message_dict["message"] = message
     message_dict["schema"] = "message"
 
-    with open("welcome.json",'w') as f:
+    with open("circuit.json",'w') as f:
         f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact
 def expand_oracle(circuit, element_to_search):
     element_to_search = element_to_search[::-1] # reverse the string in order to correctly apply the oracle function
