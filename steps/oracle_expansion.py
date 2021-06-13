@@ -20,7 +20,7 @@ def adapt_oracle(circuit_path, element):
     # load circuit data
     with open(circuit_path, 'r') as f:
         metadata = json.load(f)
-    metadata = metadata['circuit']
+    metadata = list(metadata.values())[0]['circuit']
     
     # remove x gates where not needed 
     mct_positions = []
