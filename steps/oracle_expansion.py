@@ -1,4 +1,4 @@
-from zquantum.core.circuit import Circuit
+from zquantum.core.circuit import Circuit, save_circuit
 from qiskit import QuantumCircuit, QuantumRegister
 from modules.utils import *
 import json
@@ -39,12 +39,7 @@ def adapt_oracle(circuit_path, element):
         remove_x_gates(metadata['gates'], position, element, len(element))  
         
     # save modified .json
-    try:
-        with open(circuit_path,'w') as f:
-            metadata["schema"] = "zapata-v1-circuit"
-            f.write(json.dumps(metadata, indent=2, cls=NumpyArrayEncoder)) 
-    except IOError:
-        print(f'Error: Could not open {circuit_path}')
+    save_circuit(Circuit.from_dict(metadata), circuit_path)
 
 def expand_oracle(circuit_path, element_to_search):
     element_to_search = element_to_search[::-1] # reverse the string in order to correctly apply the oracle function

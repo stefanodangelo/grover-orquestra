@@ -1,7 +1,6 @@
 from zquantum.core.circuit import save_circuit
 from ._circuit import Circuit
 import json
-from json import JSONEncoder
 """
 from qiskit import IBMQ, Aer, assemble, transpile
 from qiskit.providers.ibmq import least_busy
@@ -31,14 +30,3 @@ def to_zap(circuit, save_path):
 def from_json(load_path):
     circuit = load_circuit(load_path)
     return circuit.to_qiskit()
-
-class NumpyArrayEncoder(JSONEncoder):
-    """
-    Aux classes for decoding NumPy arrays to Python objects.
-    Returns:
-        A list or a JSONEnconder object.
-    """
-    def default(self, obj):
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        return JSONEncoder.default(self, obj)
