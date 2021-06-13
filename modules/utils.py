@@ -24,12 +24,12 @@ def load_circuit(file):
     return Circuit.from_dict(data)
 
 def to_zap(circuit, save_path):
-    """
     converted_circuit = Circuit(circuit)
     save_circuit(converted_circuit, save_path)
     """
     with open(save_path,'w') as f:
         f.write(json.dumps(circuit, indent=2)) # Write message to file as this will serve as output artifact
+    """
     
 def from_json(load_path):
     circuit = load_circuit(load_path)
