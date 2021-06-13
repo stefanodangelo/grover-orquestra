@@ -41,20 +41,16 @@ def adapt_oracle(circuit_path, element):
     # save modified .json
     save_circuit(Circuit.from_dict(metadata), circuit_path)
 
-def welcome():
-    message = "Welcome to Orquestra!"
-
-    message_dict = {}
-    message_dict["message"] = message
-    message_dict["schema"] = "message"
-
-    with open("circuit.json",'w') as f:
-        f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact
+    
 def expand_oracle(circuit, element_to_search):
     element_to_search = element_to_search[::-1] # reverse the string in order to correctly apply the oracle function
     
     # oracle expansion
     #adapt_oracle(circuit, element_to_search)
-    if circuit=='circuit.json':
-        welcome()
-    
+
+    message_dict = {}
+    message_dict["message"] = circuit
+    message_dict["schema"] = "message"
+
+    with open("circuit.json",'w') as f:
+        f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact    
