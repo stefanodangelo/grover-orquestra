@@ -52,5 +52,5 @@ def expand_oracle(circuit, element_to_search):
     message_dict["message"] = circuit
     message_dict["schema"] = "message"
 
-    with open("circuit.json",'w') as f:
+    with open("expanded-circuit.json",'w') as f:
         f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact    
