@@ -1,36 +1,44 @@
 from zquantum.core.circuit import save_circuit
 from ._circuit import Circuit
 import json
+from json import JSONEncoder
 """
 from qiskit import IBMQ, Aer, assemble, transpile
 from qiskit.providers.ibmq import least_busy
 from qiskit.tools.monitor import job_monitor
 """
 
-def load_circuit(file):
+def load_circuit(filename):
     """Loads a circuit from a file.
     Args:
         file (str or file-like object): the name of the file, or a file-like object.
     Returns:
         circuit (core.Circuit): the circuit
     """
-
-    if isinstance(file, str):
-        with open(file, "r") as f:
+    data = {}
+    try:
+        with open(filename, 'r') as f:
             data = json.load(f)
-    else:
-        data = json.load(file)
-
-    return Circuit.from_dict(data)
+    except IOError:
+            print(f'Error: Could not open {filename}')
+    
+    return Circuit.from_dict(data['circuit'])
 
 def to_zap(circuit, save_path):
     converted_circuit = Circuit(circuit)
     save_circuit(converted_circuit, save_path)
-    """
-    with open(save_path,'w') as f:
-        f.write(json.dumps(circuit, indent=2)) # Write message to file as this will serve as output artifact
-    """
     
 def from_json(load_path):
     circuit = load_circuit(load_path)
-    return circuit.to_qiskit() 
+    return circuit.to_qiskit()
+
+class NumpyArrayEncoder(JSONEncoder):
+    """
+    Aux classes for decoding NumPy arrays to Python objects.
+    Returns:
+        A list or a JSONEnconder object.
+    """
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return JSONEncoder.default(self, obj)

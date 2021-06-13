@@ -20,7 +20,8 @@ def adapt_oracle(circuit_path, element):
     # load circuit data
     with open(circuit_path, 'r') as f:
         metadata = json.load(f)
-        
+    metadata = metadata['circuit']
+    
     # remove x gates where not needed 
     mct_positions = []
     mct_in_oracle = True # boolean telling whether the mct is in the oracle or not
@@ -38,8 +39,12 @@ def adapt_oracle(circuit_path, element):
         remove_x_gates(metadata['gates'], position, element, len(element))  
         
     # save modified .json
-    with open(circuit_path, 'w') as f:
-        json.dump(metadata, f)
+    try:
+        with open(circuit_path,'w') as f:
+            metadata["schema"] = "zapata-v1-circuit"
+            f.write(json.dumps(metadata, indent=2, cls=NumpyArrayEncoder)) 
+    except IOError:
+        print(f'Error: Could not open {circuit_path}')
 
 def expand_oracle(circuit_path, element_to_search):
     element_to_search = element_to_search[::-1] # reverse the string in order to correctly apply the oracle function
