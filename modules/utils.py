@@ -1,11 +1,5 @@
 from zquantum.core.circuit import save_circuit
 from ._circuit import Circuit
-  
-"""
-from zquantum.core.circuit import save_circuit
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
-from math import sqrt
-"""
 import json
 """
 from qiskit import IBMQ, Aer, assemble, transpile

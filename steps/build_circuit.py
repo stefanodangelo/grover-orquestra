@@ -1,4 +1,8 @@
 from modules.utils import *
+from modules.functions import *
+from zquantum.core.circuit import save_circuit
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from math import sqrt
 
 def build_circuit(n_qubits, save_path='circuit.json'):
     
