@@ -12,8 +12,8 @@ def build_circuit(n_qubits, save_path='circuit.json'):
     message_dict["message"] = message
     message_dict["schema"] = "message"
 
-    to_zap(message_dict, save_path)
-    """
+    
+    
     # Define registers
     qr = QuantumRegister(n_qubits)
     cr = ClassicalRegister(n_qubits)
@@ -31,5 +31,5 @@ def build_circuit(n_qubits, save_path='circuit.json'):
         qc.barrier(qr)
     qc = add_measurements(qc, qr, cr)
     
-    to_zap(qc, save_path)
-    """
+    to_zap(message_dict, save_path)
+    #to_zap(qc, save_path)
