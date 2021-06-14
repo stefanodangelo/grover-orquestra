@@ -49,7 +49,7 @@ def expand_oracle(circuit, element_to_search):
     #adapt_oracle(circuit, element_to_search)
     with open(circuit, 'r') as f:
         metadata = json.load(f)
-    #metadata = list(metadata.values())[0]['circuit']
+    
 
     with open("expanded-circuit.json",'w') as f:
-        f.write(json.dumps(metadata, indent=2)) # Write message to file as this will serve as output artifact    
+        f.write(json.dumps(metadata.keys(), indent=2)) # Write message to file as this will serve as output artifact    
