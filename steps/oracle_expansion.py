@@ -39,7 +39,7 @@ def adapt_oracle(circuit_path, element):
         remove_x_gates(metadata['gates'], position, element, len(element))  
         
     # save modified .json
-    save_circuit(Circuit.from_dict(metadata), "expanded-circuit.json")
+    save_circuit(Circuit.from_dict(metadata), "expanded-circuit.json") # <- provare a usare json.dumps 
 
     
 def expand_oracle(circuit, element_to_search):
@@ -47,16 +47,9 @@ def expand_oracle(circuit, element_to_search):
     
     # oracle expansion
     #adapt_oracle(circuit, element_to_search)
-    message = "EMPTY MESSAGE"
-    try:
-        with open(circuit, 'r') as f:
-            metadata = json.load(f)
-        message = "LOADED SUCCESSFULLY"
-    except:
-        message = "ERROR"
-    message_dict = {}
-    message_dict["message"] = message
-    message_dict["schema"] = "message"
+    with open(circuit, 'r') as f:
+        metadata = json.load(f)
+    metadata = list(metadata.values())[0]['circuit']
 
     with open("expanded-circuit.json",'w') as f:
-        f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact    
+        f.write(json.dumps(metadata, indent=2)) # Write message to file as this will serve as output artifact    
