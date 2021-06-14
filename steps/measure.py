@@ -1,7 +1,7 @@
 from qiskit import IBMQ, Aer, assemble, transpile
 from qiskit.providers.ibmq import least_busy
 from qiskit.tools.monitor import job_monitor
-from modules.convert import from_json, load_circuit
+from modules.utils import *
 import json
 
 
