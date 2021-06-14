@@ -16,7 +16,7 @@ def remove_x_gates(gates, mct_position, element, n_qubits):
     for i in gates_to_remove:
         del gates[i]
 
-def adapt_oracle(circuit_path, element):
+def adapt_oracle(circuit_path, element, save_path):
     # load circuit data
     with open(circuit_path, 'r') as f:
         metadata = json.load(f)
@@ -38,18 +38,11 @@ def adapt_oracle(circuit_path, element):
         remove_x_gates(metadata['gates'], position, element, len(element))  
         
     # save modified .json
-    save_circuit(Circuit.from_dict(metadata), "expanded-circuit.json") # <- provare a usare json.dumps 
+    save_circuit(Circuit.from_dict(metadata), save_path) 
 
     
-def expand_oracle(circuit, element_to_search):
+def expand_oracle(circuit, element_to_search, save_path="expanded-circuit.json"):
     element_to_search = element_to_search[::-1] # reverse the string in order to correctly apply the oracle function
     
     # oracle expansion
-    adapt_oracle(circuit, element_to_search)
-    """
-    with open(circuit, 'r') as f:
-        metadata = json.load(f)
-    
-    with open("expanded-circuit.json",'w') as f:
-        f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact    
-    """
+    adapt_oracle(circuit, element_to_search, save_path)

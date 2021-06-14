@@ -1,11 +1,6 @@
 from zquantum.core.circuit import save_circuit
 from ._circuit import Circuit
 import json
-"""
-from qiskit import IBMQ, Aer, assemble, transpile
-from qiskit.providers.ibmq import least_busy
-from qiskit.tools.monitor import job_monitor
-"""
 
 def load_circuit(filename):
     """Loads a circuit from a file.
@@ -14,12 +9,8 @@ def load_circuit(filename):
     Returns:
         circuit (core.Circuit): the circuit
     """
-    data = {}
-    try:
-        with open(filename, 'r') as f:
-            data = json.load(f)
-    except IOError:
-            print(f'Error: Could not open {filename}')
+    with open(filename, 'r') as f:
+        data = json.load(f)
     
     return Circuit.from_dict(data)
 
