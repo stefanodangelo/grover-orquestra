@@ -20,7 +20,6 @@ def adapt_oracle(circuit_path, element):
     # load circuit data
     with open(circuit_path, 'r') as f:
         metadata = json.load(f)
-    metadata = list(metadata.values())[0]['circuit']
     
     # remove x gates where not needed 
     mct_positions = []
@@ -46,15 +45,11 @@ def expand_oracle(circuit, element_to_search):
     element_to_search = element_to_search[::-1] # reverse the string in order to correctly apply the oracle function
     
     # oracle expansion
-    #adapt_oracle(circuit, element_to_search)
+    adapt_oracle(circuit, element_to_search)
+    """
     with open(circuit, 'r') as f:
         metadata = json.load(f)
     
-    message = ""
-    for key in metadata.keys():
-        message += key + " "
-    message_dict = {}
-    message_dict['schema'] = "message"
-    message_dict['message'] = message
     with open("expanded-circuit.json",'w') as f:
         f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact    
+    """
