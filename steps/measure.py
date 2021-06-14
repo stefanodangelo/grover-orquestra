@@ -5,8 +5,8 @@ from modules.utils import *
 import json
 
 
-def run_and_measure(circuit_path, backend=None, save_path = 'measurements.json'):
-    qc = from_json(circuit_path)
+def run_and_measure(circuit, backend=None, save_path = 'measurements.json'):
+    qc = from_json(circuit)
     
     if backend == 'qasm_simulator':
         qc.measure_all()
