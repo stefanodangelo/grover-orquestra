@@ -50,6 +50,11 @@ def expand_oracle(circuit, element_to_search):
     with open(circuit, 'r') as f:
         metadata = json.load(f)
     
-
+    message = ""
+    for key in metadata.keys():
+        message += key + " "
+    message_dict = {}
+    message_dict['schema'] = "message"
+    message_dict['message'] = message
     with open("expanded-circuit.json",'w') as f:
-        f.write(json.dumps(metadata.keys(), indent=2)) # Write message to file as this will serve as output artifact    
+        f.write(json.dumps(message_dict, indent=2)) # Write message to file as this will serve as output artifact    
