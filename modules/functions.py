@@ -52,7 +52,7 @@ def find_all_mcz(metadata):
     mcz_in_oracle = True # boolean telling whether the MCZ is in the oracle or not
     for i in range(len(metadata['gates'])):
         if (metadata['gates'][i]['name'] == 'MCT' or metadata['gates'][i]['name'] == 'CNOT' or metadata['gates'][i]['name'] == 'CCX'):
-            if mct_in_oracle:
+            if mcz_in_oracle:
                 mcz_positions.append(i)
                 mcz_in_oracle = False
             else:
