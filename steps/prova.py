@@ -10,11 +10,11 @@ def run_and_measure(circuit = None, backend=None, save_path = 'measurements.json
     answer['schema'] = ""
     answer['message'] = 'ciao'
     
-    """
+
     token = IBMQ.stored_accounts()[0]['token']
     url = IBMQ.stored_accounts()[0]['url']
     IBMQ.enable_account(token,url)
-    
+    """
     backend = least_busy(provider.backends(filters=lambda x: x.configuration().n_qubits >= len(qc.qubits) and 
                          not x.configuration().simulator and x.status().operational==True))
     # Run our circuit on the least busy backend. Monitor the execution of the job in the queue
