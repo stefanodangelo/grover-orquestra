@@ -9,8 +9,7 @@ def run_and_measure(circuit = None, backend=None, save_path = 'measurements.json
     answer = {}
     answer['schema'] = ""
 
-    answer["token"] = IBMQ.stored_accounts()[0]['token']
-    answer["url"] = IBMQ.stored_accounts()[0]['url']
+    IBMQ.save_account("f1b53e81357761bafbbb2d7a71eaa26cfc0d9df4eeb53513096c5cee90ec01bcc8ba6fa547ea4988a1b9136f2abf8090a133546389581b3c51a1471dad8749e6")
     #IBMQ.enable_account(token,url)
     """
     backend = least_busy(provider.backends(filters=lambda x: x.configuration().n_qubits >= len(qc.qubits) and 
