@@ -10,10 +10,10 @@ def run_and_measure(circuit, backend='qasm_simulator', save_path = 'measurements
     measurements['schema'] = ""
 
     if backend == 'ibm':
-        results = get_results_from_IBM(token)
+        results = get_results_from_IBM(qc, token)
         measurements['results'] = results.get_counts(qc)
     else:
-        results = get_simulation_results(backend)
+        results = get_simulation_results(qc, backend)
 
         # <--- code used only for plot task --->
         old_keys = list(results.keys())

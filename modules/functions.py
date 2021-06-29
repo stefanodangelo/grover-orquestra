@@ -49,14 +49,14 @@ def add_measurements(qc, qr, cr):
     
 def find_all_mcz(metadata):
     mcz_positions = []
-    mct_in_oracle = True # boolean telling whether the mct is in the oracle or not
+    mcz_in_oracle = True # boolean telling whether the MCZ is in the oracle or not
     for i in range(len(metadata['gates'])):
         if (metadata['gates'][i]['name'] == 'MCT' or metadata['gates'][i]['name'] == 'CNOT' or metadata['gates'][i]['name'] == 'CCX'):
             if mct_in_oracle:
                 mcz_positions.append(i)
-                mct_in_oracle = False
+                mcz_in_oracle = False
             else:
-                mct_in_oracle = True
+                mcz_in_oracle = True
     
     mcz_positions.sort(reverse=True) # sort in order not to affect the positions of the gates to remove
     
@@ -82,7 +82,7 @@ def remove_x_gates(gates, mcz_position, element, n_qubits):
     for i in gates_to_remove:
         del gates[i]
 
-def get_results_from_IBM(token):
+def get_results_from_IBM(qc, token):
     IBMQ.save_account(token)
     provider = IBMQ.load_account()
     backend = least_busy(provider.backends(filters=lambda x: x.configuration().n_qubits >= len(qc.qubits) and not x.configuration().simulator and x.status().operational == True))
@@ -96,7 +96,7 @@ def get_results_from_IBM(token):
     # Get the results from the computation
     return job.result()
 
-def get_simulation_results(backend):
+def get_simulation_results(qc, backend):
     qc.measure_all()
     sim = Aer.get_backend(backend)
     qobj = assemble(qc)
