@@ -5,7 +5,7 @@ from modules.utils import *
 import json
 
 
-def run_and_measure(circuit, backend='sim', save_path = 'measurements.json'):
+def run_and_measure(circuit, backend=None, save_path = 'measurements.json'):
     qc = from_json(circuit)
 
     if backend == 'ibm':
@@ -38,5 +38,5 @@ def run_and_measure(circuit, backend='sim', save_path = 'measurements.json'):
     measurements['schema'] = ""
 
     with open(save_path, 'w') as f:
-        json.dump(answer, f)
+        json.dump(measurements, f)
        
