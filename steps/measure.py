@@ -1,5 +1,5 @@
-from modules.utils import from_json
-from modules.functions import get_results_from_IBM, get_simulation_results
+from modules.utils import *
+from modules.functions import *
 import json
 
 

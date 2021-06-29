@@ -1,6 +1,6 @@
 from zquantum.core.circuit import Circuit, save_circuit
 from modules.utils import *
-from modules.functions import find_all_mcz, remove_x_gates
+from modules.functions import *
 import json 
 
     
