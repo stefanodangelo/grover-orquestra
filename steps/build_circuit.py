@@ -15,12 +15,12 @@ def build_circuit(n_qubits, save_path='circuit.json'):
     
     # Build circuit
     qc = init(qc, qr)
-    for i in range(round(sqrt(n_qubits))):
-        qc = oracle(qc, qr) 
-        qc.barrier(qr)
-        qc.barrier(qr)
-        qc = diffuser(qc, qr)
-        qc.barrier(qr)
+    #for i in range(round(sqrt(n_qubits))):
+    qc = oracle(qc, qr) 
+    qc.barrier(qr)
+    qc.barrier(qr)
+    qc = diffuser(qc, qr)
+    qc.barrier(qr)
     qc = add_measurements(qc, qr, cr)
     
     to_zap(qc, save_path)
