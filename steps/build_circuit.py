@@ -1,6 +1,5 @@
-from modules.utils import *
-from modules.functions import *
-from zquantum.core.circuit import save_circuit
+from modules.utils import to_zap
+from modules.functions import init, mcz, oracle, diffuser, add_measurements
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from math import sqrt
 
